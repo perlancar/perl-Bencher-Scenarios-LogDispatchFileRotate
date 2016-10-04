@@ -19,7 +19,7 @@ our $scenario = {
             code_template => <<'_',
 state $tempdir = File::Temp::tempdir(CLEANUP => 0);
 warn "tempdir=$tempdir";
-state $file = Log::Dispatch::FileRotate->new(name => 'file1', min_level => 'info', filename => "$tempdir/file1", mode => 'append', size => 10, max => 6);
+state $file = Log::Dispatch::FileRotate->new(name => 'file1', min_level => 'info', filename => "$tempdir/file1", mode => 'append', size => 10*1024*1024, max => 6);
 $file->log(level => 'info', message => <str>) for 1..1000;
 _
         },
